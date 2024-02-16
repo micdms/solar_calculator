@@ -18,7 +18,7 @@ Route::get('/', [CalculatorController::class, 'ViewCalculator'])->name('main_pag
 Route::post('/submit', [CalculatorController::class, 'AddCalculator'])->name('addCalculator');
 Route::get('/validation/{telephone}', [CalculatorController::class, 'ViewOtp'])->name('ViewOtp');
 Route::post('/validation/submit/{telephone}', [CalculatorController::class, 'SubmitOtp'])->name('SubmitOtp');
-Route::get('/invoice/{telephone}', [CalculatorController::class, 'ViewInvoice'])->name('ViewInvoice');
+Route::get('/result/{token}', [CalculatorController::class, 'ViewInvoice'])->name('ViewInvoice');
 Route::get('/data_provinsi', [CalculatorController::class, 'GetProvinsi'])->name('GetProvinsi');
 Route::get('/data_kota/{id}', [CalculatorController::class, 'GetCity'])->name('GetCity');
 Route::post('/nama', [CalculatorController::class, 'nama'])->name('nama');

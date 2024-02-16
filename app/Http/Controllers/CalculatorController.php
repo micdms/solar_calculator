@@ -22,7 +22,7 @@ class CalculatorController extends Controller
 
     public function AddCalculator(Request $request)
     {
-        try {       
+        try {
             $response_provinsi = Http::withHeaders([
                 'key' => '597753f92b40f70184c440f4ed974a9a',
             ])->get('https://api.rajaongkir.com/starter/province', ['id' => $request->provinsi]);
@@ -37,9 +37,9 @@ class CalculatorController extends Controller
                     $kota = $response_kota->json()['rajaongkir']['results']['city_name'];
                     $kode_pos = $response_kota->json()['rajaongkir']['results']['postal_code'];
 
-                    //     // $response = Http::post('http://localhost:3000/get_otp',['telephone' => $request->telephone]);
-                    //     // $data = json_decode($response->body(), true);
-                    //     // $otp = $data['otp'];
+                    $response = Http::post('https://otp.deltamas-solusindo.my.id/generate-otp', ['telephone' => $request->telephone]);
+                    $data = json_decode($response->body(), true);
+                    $token = $data['token'];
 
                     $user = new User();
                     $user->nama = $request->nama;
@@ -52,7 +52,7 @@ class CalculatorController extends Controller
                     $user->telephone = $request->telephone;
                     $user->email = $request->email;
                     $user->status = 'non_active';
-                    $user->otp = '0';
+                    $user->token = $token;
                     $user->save();
 
                     if ($user) {
@@ -65,7 +65,7 @@ class CalculatorController extends Controller
                         $calculator->save();
 
                         if ($calculator) {
-                            return redirect()->route('ViewInvoice',$user->telephone);
+                            return redirect()->route('ViewInvoice', $user->telephone);
                         } else {
                             return view('404');
                         }
@@ -84,36 +84,21 @@ class CalculatorController extends Controller
         }
     }
 
-    public function ViewOtp($telephone)
-    {
-        return view('ViewOtp', ['telephone' => $telephone]);
-    }
 
-    public function SubmitOtp(Request $request, $telephone)
-    {
-        $otp_user = User::where('telephone', $telephone)->first();
-
-        if ($otp_user->otp == $request->otp) {
-            $otp_user->status = 'active';
-            $otp_user->update();
-            return view('success');
-        } else {
-            return view('failed');
-        }
-    }
-
-    public function ViewInvoice($telephone)
+    public function ViewInvoice($token)
     {
         $harga_plts = [
-            "1300"=>["35535400", 9.2, 13],
-            "2200"=>["59453600", 10.9, 13],
-            "3500"=>["71805900", 13.4, 9], 
-            "3900"=>["77392400", 14.2, 9],
-            "4400"=>["84025700", 15, 8],
-            "5500"=>["93058800", 16.7, 7],
-            "6600"=>["103916200", 19.2, 7]
+            "1300" => ["35535400", 9.2, 13],
+            "2200" => ["59453600", 10.9, 13],
+            "3500" => ["71805900", 13.4, 9],
+            "3900" => ["77392400", 14.2, 9],
+            "4400" => ["84025700", 15, 8],
+            "5500" => ["93058800", 16.7, 7],
+            "6600" => ["103916200", 19.2, 7]
         ];
-        $user = User::where('telephone', $telephone)->first();
+        $user = User::where('token', $token)->first();
+        $user->status = 'active';
+        $user->update();
         $calculator = Calculator::where('id_user', $user->id)->select('biaya_listrik', 'kapasitas_listrik', 'rangka_atap', 'jenis_atap')->first();
         $response = Http::withHeaders([
             'key' => '597753f92b40f70184c440f4ed974a9a',
@@ -129,7 +114,7 @@ class CalculatorController extends Controller
             $user_data_harga = $harga_plts[$calculator->kapasitas_listrik];
             $ongkir = $user_data_harga[1] * $harga_per30;
             // dd($ongkir,$ongkir+$user_data_harga[0]);
-            return view('inv', ['calculator'=>$calculator, 'ongkir'=>$ongkir, 'total_biaya'=>$user_data_harga[0], 'kapasitas_listrik'=>$calculator->kapasitas_listrik, 'bep'=>$user_data_harga[2]]);
+            return view('inv', ['calculator' => $calculator, 'ongkir' => $ongkir, 'total_biaya' => $user_data_harga[0], 'kapasitas_listrik' => $calculator->kapasitas_listrik, 'bep' => $user_data_harga[2]]);
         } else {
             // Gagal, Anda dapat mengakses kode status dengan $response->status()
             dd($responseStatus = $response->status());
@@ -156,7 +141,8 @@ class CalculatorController extends Controller
         return $response->json();
     }
 
-    public function nama(Request $request){
-        return response()->json(['nama'=>"oke", "biaya"=>$request->biaya],200);
+    public function nama(Request $request)
+    {
+        return response()->json(['nama' => "oke", "biaya" => $request->biaya], 200);
     }
 }

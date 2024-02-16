@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('calculators', function (Blueprint $table) {
             $table->id();
             $table->foreignId('id_user')->references('id')->on('users')->onDelete('cascade');
-            $table->string('biaya_listrik');
-            $table->string('kapasitas_listrik');
-            $table->string('rangka_atap');
-            $table->string('jenis_atap');
+            $table->text('biaya_listrik');
+            $table->text('kapasitas_listrik');
+            $table->text('rangka_atap');
+            $table->text('jenis_atap');
             $table->timestamps();
         });
     }

@@ -13,17 +13,17 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
-            $table->string('provinsi_id');
-            $table->string('provinsi');
-            $table->string('kota_id');
-            $table->string('kota');
-            $table->string('kode_pos');
+            $table->text('nama');
+            $table->text('provinsi_id');
+            $table->text('provinsi');
+            $table->text('kota_id');
+            $table->text('kota');
+            $table->text('kode_pos');
             $table->text('alamat');
-            $table->string('telephone');
-            $table->string('email');
-            $table->string('status');
-            $table->string('otp');
+            $table->text('telephone');
+            $table->text('email');
+            $table->text('status');
+            $table->text('token');
             $table->timestamps();
         });
     }

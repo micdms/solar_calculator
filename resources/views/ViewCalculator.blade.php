@@ -23,8 +23,62 @@
   -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+
+            /* Ganti dengan warna latar belakang yang diinginkan */
+            color: #fff;
+            /* Ganti dengan warna teks yang diinginkan */
+
+            box-sizing: border-box;
+        }
+
+        .image-container {
+            position: relative;
+            width: 100%;
+            height: 800px;
+            overflow: hidden;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .centered-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 40px;
+            text-align: center;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            /* Warna hitam dengan opacity 0.7 */
+        }
+
+        @media screen and (max-width: 768px) {
+            .image-container {
+                height: 400px;
+                /* Mengubah tinggi pada layar yang lebih kecil */
+            }
+        }
+    </style>
+
 </head>
 
 <body id="top">
@@ -71,37 +125,16 @@
     </header>
 
 
-    <main style="margin-top: 3rem;">
+    <main style="margin-top: 3rem; margin-bottom:5%">
         <article>
 
-            <!--
-        - #HERO
-      -->
-
-            <section class="hero" id="home">
-                <div class="project-card"></div>
-                <div class="container">
-
-                    <div class="hero-content">
-
-                        <h2 class="h1 hero-title" style="color: white;">Solar Calculator</h2>
-
-                        <p class="section-text" style="color: white;">
-                            Velit hendrerit sit auctor tempor sem. Congue mi tempor condimentum felis arcu, non cursus.
-                            Nulla pharetra
-                            porttitor sed
-                            platea arcu et leo odio.
-                        </p>
-
-                    </div>
-
+            <div class="image-container">
+                <img src="{{asset('assets/images/solar.webp')}}" alt="">
+                <div class="overlay"></div>
+                <div class="centered-text">
+                    <h1>Solar Calculator</h1>
                 </div>
-
-            </section>
-
-            <!--
-        - #SERVICE
-      -->
+            </div>
 
             <section class="service" id="service">
                 <div class="container">
@@ -117,11 +150,9 @@
                         </ul>
                         <div class="form-select" style="margin-top: 1rem;">
                             <label for="invoice">Jumlah biaya listrik rata-rata</label>
-                            <input type="number" id="biaya_listrik" required placeholder="ex. 250.000"
-                                class="input-field mt-1" style="margin-bottom: 1rem;">
+                            <input type="number" id="biaya_listrik" required placeholder="ex. 250.000" class="input-field mt-1" style="margin-bottom: 1rem;">
                             <label for="invoice">Kapasitas Listrik</label>
-                            <select id="kapasitas_listrik" name="kapasitas_listrik" class="form-select input-field"
-                                style="padding: 15px 20px;">
+                            <select id="kapasitas_listrik" name="kapasitas_listrik" class="form-select input-field" style="padding: 15px 20px;">
                                 <option value="1300">1300 VA</option>
                                 <option value="2200">2200 VA</option>
                                 <option value="3500">3500 VA</option>
@@ -144,16 +175,14 @@
                         <p class="text-center size-2">Pilih rangka atap anda:</p>
                         <div class="d-flex space-evenly">
                             <button class="m-4" id="rangka-baja">
-                                <img src="{{ asset('assets/images/baja.jpg') }}"
-                                    style="width:200px;height:140px;border-radius:25px 25px 0px 0px;">
+                                <img src="{{ asset('assets/images/baja.jpg') }}" style="width:200px;height:140px;border-radius:25px 25px 0px 0px;">
                                 <div style="background-color:#e5edff;height:80px;">
                                     <p style="padding-top: 1rem;">Baja Ringan</p>
                                 </div>
 
                             </button>
                             <button class="m-4" id="rangka-kayu">
-                                <img src="{{ asset('assets/images/kayu.jpg') }}"
-                                    style="width:200px;height:140px;border-radius:25px 25px 0px 0px;">
+                                <img src="{{ asset('assets/images/kayu.jpg') }}" style="width:200px;height:140px;border-radius:25px 25px 0px 0px;">
                                 <div style="background-color:#e5edff;height:80px;">
                                     <p style="padding-top: 1rem;">Kayu</p>
                                 </div>
@@ -172,29 +201,25 @@
                         <p class="text-center size-2">Pilih rangka atap anda:</p>
                         <div class="d-flex space-evenly">
                             <button class="m-4" id="atap-beton">
-                                <img src="{{ asset('assets/images/beton.jpg') }}"
-                                    style="width:200px;height:140px;border-radius:25px 25px 0px 0px;">
+                                <img src="{{ asset('assets/images/beton.jpg') }}" style="width:200px;height:140px;border-radius:25px 25px 0px 0px;">
                                 <div style="background-color:#e1f2f2;height:80px;">
                                     <p>Beton</p>
                                 </div>
                             </button>
                             <button class="m-4" id="atap-asbes">
-                                <img src="{{ asset('assets/images/asbes.jpg') }}"
-                                    style="width:200px;height:140px;border-radius:25px 25px 0px 0px;">
+                                <img src="{{ asset('assets/images/asbes.jpg') }}" style="width:200px;height:140px;border-radius:25px 25px 0px 0px;">
                                 <div style="background-color:#e1f2f2;height:80px;">
                                     <p>Asbes</p>
                                 </div>
                             </button>
                             <button class="m-4" id="atap-genteng">
-                                <img src="{{ asset('assets/images/genteng.jpg') }}"
-                                    style="width:200px;height:140px;border-radius:25px 25px 0px 0px;">
+                                <img src="{{ asset('assets/images/genteng.jpg') }}" style="width:200px;height:140px;border-radius:25px 25px 0px 0px;">
                                 <div style="background-color:#e1f2f2;height:80px;">
                                     <p>Genteng</p>
                                 </div>
                             </button>
                             <button class="m-4" id="atap-spandex">
-                                <img src="{{ asset('assets/images/spandex.jpg') }}"
-                                    style="width:200px;height:140px;border-radius:25px 25px 0px 0px;">
+                                <img src="{{ asset('assets/images/spandex.jpg') }}" style="width:200px;height:140px;border-radius:25px 25px 0px 0px;">
                                 <div style="background-color:#e1f2f2;height:80px;">
                                     <p>Spandex</p>
                                 </div>
@@ -213,30 +238,24 @@
 
                         <div class="form-select" style="margin-top: 1rem;">
                             <label for="">Nama</label>
-                            <input type="text" id="nama" required placeholder="" class="input-field"
-                                style="margin-bottom: 1rem;">
+                            <input type="text" id="nama" required placeholder="" class="input-field" style="margin-bottom: 1rem;">
                             <label for="">Provinsi</label>
-                            <select id="location-province" name="location-province" class="form-select input-field"
-                                style="padding: 15px 20px; margin-bottom: 1rem;">
+                            <select id="location-province" name="location-province" class="form-select input-field" style="padding: 15px 20px; margin-bottom: 1rem;">
                             </select>
                             <label for="">Kota</label>
-                            <select id="location-city" name="location-city" class="form-select input-field"
-                                style="padding: 15px 20px; margin-bottom: 1rem;">
+                            <select id="location-city" name="location-city" class="form-select input-field" style="padding: 15px 20px; margin-bottom: 1rem;">
                             </select>
 
                             <label for="">Alamat Rumah Tinggal</label>
-                            <input type="text" id="alamat" required placeholder="" class="input-field"
-                                style="margin-bottom: 1rem;">
+                            <input type="text" id="alamat" required placeholder="" class="input-field" style="margin-bottom: 1rem;">
                             <div class="d-flex" style="justify-content: space-between;">
                                 <div class="w-50">
                                     <label for="">Email</label>
-                                    <input type="text" id="email" required placeholder="" class="input-field"
-                                        style="margin-bottom: 1rem;">
+                                    <input type="text" id="email" required placeholder="" class="input-field" style="margin-bottom: 1rem;">
                                 </div>
                                 <div class="w-50" style="width: 45% !important;">
                                     <label for="">No. Whatsapp</label>
-                                    <input type="text" id="wa" required placeholder="" class="input-field"
-                                        style="margin-bottom: 1rem;" draggable="true">
+                                    <input type="text" id="wa" required placeholder="" class="input-field" style="margin-bottom: 1rem;" draggable="true">
                                 </div>
                             </div>
                             <p>*Hasil akan dikirimkan ke alamat email, pastikan alamat email valid.</p>
@@ -257,14 +276,10 @@
                                 <div class="otp-img"></div>
                                 <h4 class="h4 section-title" style="text-align: center;">OTP Verification</h4>
                                 <div class="otp-input-wrapper">
-                                    <input class="input-pin-verification" type="text" inputmode="numeric"
-                                        maxlength="1" />
-                                    <input class="input-pin-verification" type="text" inputmode="numeric"
-                                        maxlength="1" />
-                                    <input class="input-pin-verification" type="text" inputmode="numeric"
-                                        maxlength="1" />
-                                    <input class="input-pin-verification" type="text" inputmode="numeric"
-                                        maxlength="1" />
+                                    <input class="input-pin-verification" type="text" inputmode="numeric" maxlength="1" />
+                                    <input class="input-pin-verification" type="text" inputmode="numeric" maxlength="1" />
+                                    <input class="input-pin-verification" type="text" inputmode="numeric" maxlength="1" />
+                                    <input class="input-pin-verification" type="text" inputmode="numeric" maxlength="1" />
                                 </div>
                             </div>
                         </div>
@@ -316,9 +331,6 @@
 
     </footer>
 
-    <a href="#top" class="go-top active" data-go-top>
-        <ion-icon name="chevron-up-outline"></ion-icon>
-    </a>
     <!--
     - custom js link
   -->
@@ -415,13 +427,13 @@
                 // rl.searchParams.append('kapasitas_listrik', kapasitasListrik);
 
                 var input_biaya = document.createElement('input');
-                input_biaya.type = 'text';
+                input_biaya.type = 'hidden';
                 input_biaya.name = 'biaya_listrik';
                 input_biaya.value = biayaListrik; // Ganti dengan nilai data yang diinginkan
                 dynamicForm.appendChild(input_biaya);
 
                 var input_kapasitas = document.createElement('input');
-                input_kapasitas.type = 'text';
+                input_kapasitas.type = 'hidden';
                 input_kapasitas.name = 'kapasitas_listrik';
                 input_kapasitas.value = kapasitasListrik;
                 dynamicForm.appendChild(input_kapasitas);
@@ -451,9 +463,9 @@
             // btnNext.style.display = 'flex';
 
             var input = document.createElement('input');
-            input.type = 'text';
             input.name = 'jenis_atap';
             input.value = 'beton'; // Ganti dengan nilai data yang diinginkan
+            input.type = 'hidden';
             dynamicForm.appendChild(input);
             nextSlide();
             btnNext.style.display = 'flex';
@@ -466,9 +478,9 @@
             // btnNext.style.display = 'flex';
 
             var input = document.createElement('input');
-            input.type = 'text';
             input.name = 'jenis_atap';
             input.value = 'asbes'; // Ganti dengan nilai data yang diinginkan
+            input.type = 'hidden';
             dynamicForm.appendChild(input);
             nextSlide();
             btnNext.style.display = 'flex';
@@ -481,9 +493,9 @@
             // btnNext.style.display = 'flex';
 
             var input = document.createElement('input');
-            input.type = 'text';
             input.name = 'jenis_atap';
             input.value = 'genteng'; // Ganti dengan nilai data yang diinginkan
+            input.type = 'hidden';
             dynamicForm.appendChild(input);
             nextSlide();
             btnNext.style.display = 'flex';
@@ -496,9 +508,9 @@
             // btnNext.style.display = 'flex';
 
             var input = document.createElement('input');
-            input.type = 'text';
             input.name = 'jenis_atap';
             input.value = 'spandex'; // Ganti dengan nilai data yang diinginkan
+            input.type = 'hidden';
             dynamicForm.appendChild(input);
             nextSlide();
             btnNext.style.display = 'flex';
@@ -510,9 +522,9 @@
             // nextSlide();
 
             var input = document.createElement('input');
-            input.type = 'text';
             input.name = 'rangka_atap';
             input.value = 'baja'; // Ganti dengan nilai data yang diinginkan
+            input.type = 'hidden';
             dynamicForm.appendChild(input);
             nextSlide();
         });
@@ -523,9 +535,9 @@
             // nextSlide();
 
             var input = document.createElement('input');
-            input.type = 'text';
             input.name = 'rangka_atap';
             input.value = 'kayu'; // Ganti dengan nilai data yang diinginkan
+            input.type = 'hidden';
             dynamicForm.appendChild(input);
             nextSlide();
         });
@@ -564,39 +576,39 @@
             var wa = document.getElementById('wa');
 
             var input_nama = document.createElement('input');
-            input_nama.type = 'text';
             input_nama.name = 'nama';
             input_nama.value = nama.value; // Ganti dengan nilai data yang diinginkan
+            input_nama.type = 'hidden';
             dynamicForm.appendChild(input_nama);
 
             var input_alamat = document.createElement('input');
-            input_alamat.type = 'text';
             input_alamat.name = 'alamat';
             input_alamat.value = alamat.value; // Ganti dengan nilai data yang diinginkan
+            input_alamat.type = 'hidden';
             dynamicForm.appendChild(input_alamat);
 
             var input_email = document.createElement('input');
-            input_email.type = 'text';
             input_email.name = 'email';
             input_email.value = email.value; // Ganti dengan nilai data yang diinginkan
+            input_email.type = 'hidden';
             dynamicForm.appendChild(input_email);
 
             var input_wa = document.createElement('input');
-            input_wa.type = 'text';
             input_wa.name = 'telephone';
             input_wa.value = wa.value; // Ganti dengan nilai data yang diinginkan
+            input_wa.type = 'hidden';
             dynamicForm.appendChild(input_wa);
 
             var input_kota = document.createElement('input');
-            input_kota.type = 'text';
             input_kota.name = 'kota';
             input_kota.value = selectCity.options[selectCity.selectedIndex].value;
+            input_kota.type = 'hidden';
             dynamicForm.appendChild(input_kota);
 
             var input_provinsi = document.createElement('input');
-            input_provinsi.type = 'text';
             input_provinsi.name = 'provinsi';
-            input_provinsi.value = selectProvince.options[selectProvince.selectedIndex].value
+            input_provinsi.value = selectProvince.options[selectProvince.selectedIndex].value;
+            input_provinsi.type = 'hidden';
             dynamicForm.appendChild(input_provinsi);
 
             document.body.appendChild(dynamicForm);

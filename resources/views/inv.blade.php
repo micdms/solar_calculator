@@ -7,34 +7,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Solar Calculator</title>
 
-    <!--
-    - favicon
-  -->
-    <link rel="shortcut icon" href="{{ asset('assets/images/logo.JPG') }}"type="image/jpg">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{{ asset('assets/images/logo.jpg') }}" type="image/jpg">
 
-    <!--
-    - custom css link
-  -->
-    <link rel="stylesheet" href="{{ asset('assets\css\style.css') }}">
-    <!-- <link rel="stylesheet" href="./assets/css/roi.css"> -->
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
-    <!--
-    - google font link
-  -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+
+            /* Ganti dengan warna latar belakang yang diinginkan */
+            color: #fff;
+            /* Ganti dengan warna teks yang diinginkan */
+
+            box-sizing: border-box;
+        }
+
+        body,
+        html {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        main {
+            width: 100%;
+            max-width: 800px;
+            /* Atur lebar maksimum sesuai kebutuhan Anda */
+            text-align: center;
+            padding-bottom: 10%;
+        }
+    </style>
 </head>
 
 <body id="top">
 
-    <header class="header" data-header>
+    <header class="header">
         <div class="container">
-
             <a href="#" class="logo">
-                <img src="./assets/images/logo.JPG" alt="Solutry logo">
+                <img src="{{asset('assets/images/logo.jpg')}}" alt="Solutry logo">
             </a>
 
             <button class="nav-toggle-btn" data-nav-toggle-btn>
@@ -45,29 +68,22 @@
             <nav class="navbar">
                 <div class="container">
                     <ul class="navbar-list">
-
                         <li>
                             <a href="#service" class="navbar-link" data-navbar-link>Calculator</a>
                         </li>
-
                         <li>
                             <a href="#blog" class="navbar-link" data-navbar-link>Contact</a>
                         </li>
-
                     </ul>
                 </div>
             </nav>
-
-            <!-- <button class="btn btn-secondary">
-        <span>Get Started</span>
-
-        <ion-icon name="chevron-forward-outline"></ion-icon>
-      </button> -->
-
         </div>
+
+        <hr style="background-color: black; height:3px; margin-top:1%;">
     </header>
 
-    <main style="margin-top: 4rem;">
+
+    <main>
 
         <div class="container" id="invoice">
             <p class="text-center size-2 bold">Ringkasan</p>
@@ -121,94 +137,39 @@
         </div>
 
     </main>
-    <footer class="footer" style="margin-top: 20rem;">
 
+    <footer class="footer">
         <div class="footer-bottom">
             <div class="container">
-
                 <p class="copyright">
                     &copy; 2023 <a href="#">Deltamas Solusindo</a>. All Rights Reserved
                 </p>
-
                 <ul class="social-list">
-
                     <li>
                         <a href="#" class="social-link">
                             <ion-icon name="logo-facebook"></ion-icon>
                         </a>
                     </li>
-
                     <li>
                         <a href="#" class="social-link">
                             <ion-icon name="logo-linkedin"></ion-icon>
                         </a>
                     </li>
-
                     <li>
                         <a href="#" class="social-link">
                             <ion-icon name="logo-instagram"></ion-icon>
                         </a>
                     </li>
-
                 </ul>
-
             </div>
         </div>
-
     </footer>
 
-    <a href="#top" class="go-top active" data-go-top>
-        <ion-icon name="chevron-up-outline"></ion-icon>
-    </a>
-    - custom js link
-    -->
-    <script src="./assets/js/script.js"></script>
+
+    <script src="{{asset('assets/js/script.js')}}"></script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
-    <script>
-        var state = 1;
-        var btnNext = document.getElementById('btn-next');
-
-        btnNext.addEventListener('click', function() {
-            if (state == 1) {
-                nextTwo();
-            }
-            if (state == 2) {
-                nextThree();
-            }
-            if (state == 3) {
-                nextFour();
-            }
-            state += 1;
-        });
-
-        function nextTwo() {
-            var before = document.getElementById('step-1');
-            var after = document.getElementById('step-2');
-            before.classList.add('hide');
-            after.classList.remove('hide');
-
-        }
-
-        function nextThree() {
-            var before = document.getElementById('step-2');
-            var after = document.getElementById('step-3');
-            before.classList.add('hide');
-            after.classList.remove('hide');
-        }
-
-        function nextFour() {
-            var before = document.getElementById('step-3');
-            var after = document.getElementById('step-4');
-            before.classList.add('hide');
-            after.classList.remove('hide');
-            btnNext.style.display = 'none';
-            setTimeout(function() {
-                window.location = ''
-            }, 2500)
-        }
-    </script>
 </body>
 
 </html>
